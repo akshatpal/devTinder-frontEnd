@@ -1,11 +1,9 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { removeUser } from '../utils/userSlice';
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
+import { removeUser } from '../utils/userSlice';
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
@@ -13,14 +11,12 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   const handleLogout = async () => {
     try{
-      const res = await axios.post(BASE_URL + '/logout', { withCredentials: true });
-      if(res.status === 200){
-        
-        dispatch(removeUser());
-        navigate('/login');
-      }
+      await axios.post(BASE_URL + '/logout', {} ,  { withCredentials: true });
+      dispatch(removeUser());
+      navigate('/login');
     } catch(err){
       console.log(err);
     }
@@ -31,7 +27,7 @@ const NavBar = () => {
         <div className="flex-1">
           <Link to='/' className="btn btn-ghost text-xl">devTinder</Link>
         </div>
-        <div className="flex-none">
+        {user &&<div className="flex-none">
           <div className="dropdown dropdown-end mx-5">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -52,7 +48,7 @@ const NavBar = () => {
               <li onClick={handleLogout}><Link to='/login'>Logout</Link></li>
             </ul>
           </div>
-        </div>
+        </div>}
       </div>
   )
 }
