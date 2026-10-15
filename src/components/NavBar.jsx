@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const NavBar = () => {
+  const user = useSelector((store) => store.user);
+  
   return (
     <div className="navbar bg-base-300 shadow-sm">
         <div className="flex-1">
@@ -24,7 +27,7 @@ const NavBar = () => {
                   <span className="badge">New</span>
                 </a>
               </li>
-              <li><a>Settings</a></li>
+              <li><a>{user?.firstName}</a></li>
               <li><a>Logout</a></li>
             </ul>
           </div>
