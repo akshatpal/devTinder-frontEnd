@@ -44,7 +44,17 @@ const NavBar = () => {
                   Profile
                 </Link>
               </li>
-              <li>{user?.firstName}</li>
+              <li>
+                <Link className="justify-between" to='/connections'>
+                  Connections
+                </Link>
+              </li>
+              <li>
+                <Link className="justify-between" to='/requests'>
+                  Requests
+                </Link>
+              </li>
+              <li><Link to='/profile'>{user?.firstName}</Link></li>
               <li onClick={handleLogout}><Link to='/login'>Logout</Link></li>
             </ul>
           </div>

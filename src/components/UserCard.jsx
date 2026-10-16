@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UserCard = ({user}) => {
+const UserCard = ({user, action}) => {
     return (
         <div>
             <div className="card bg-base-200 w-96 shadow-sm">
@@ -12,10 +12,17 @@ const UserCard = ({user}) => {
                 <div className="card-body">
                     <h2 className="card-title">{user?.firstName + " " + user?.lastName}</h2>
                     <p>{user?.age}</p>
-                    <div className="card-actions justify-between">
-                        <button className="btn btn-primary">Ignore</button>
-                        <button className="btn btn-secondary">Interested</button>
-                    </div>
+                    {action === 'requests' ? (
+                        <div className="card-actions justify-between">
+                            <button className="btn btn-error">Reject</button>
+                            <button className="btn btn-success">Accept</button>
+                        </div>
+                    ) : (
+                        <div className="card-actions justify-between">
+                            <button className="btn btn-primary">Ignore</button>
+                            <button className="btn btn-secondary">Interested</button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
