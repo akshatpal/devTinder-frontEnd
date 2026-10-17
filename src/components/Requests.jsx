@@ -24,7 +24,7 @@ const Requests = () => {
   return (
     <div className="flex justify-center flex-col items-center">
         {request.map((req) => {
-            return <UserCard key={req._id} user={req.fromUserId} req={req} action='requests' />
+            return <UserCard key={req._id} user={req.fromUserId} req={req} action='requests' onRefresh={fetchRequests} />
         })}
     </div>
   )

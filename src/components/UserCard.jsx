@@ -2,16 +2,16 @@ import React from 'react'
 import axios from 'axios';
 import { BASE_URL } from '../utils/constants';
 
-const UserCard = ({user, action, req}) => {
+const UserCard = ({user, action, req, onRefresh}) => {
+    
 
     const reviewConnection = async (type,status) => {
         try {
-            console.log(req._id || user._id)
-            const res = await axios.post(BASE_URL + '/request/'+type +'/'+status +'/'+ (req._id ? req._id : user._id), {
+            await axios.post(BASE_URL + '/request/'+type +'/'+status +'/'+ (req._id ? req._id : user._id), {
             }, {
                 withCredentials: true
             });
-            console.log(res);
+            if (onRefresh) onRefresh();
         } catch (error) {
             console.log(error);
         }
@@ -21,7 +21,7 @@ const UserCard = ({user, action, req}) => {
             <div className="card bg-base-200 w-96 shadow-sm">
                 <figure>
                     <img
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbksj9NS4J0zAJN5LEwzN6i0tV5dtgZmR89UzhDAK7CYCIsFvpajnCeHvl&s=10"
                         alt="Shoes" />
                 </figure>
                 <div className="card-body">

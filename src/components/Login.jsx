@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
@@ -44,6 +45,9 @@ const Login = () => {
                     <div className="card-actions justify-center mt-6">
                         <button className="btn btn-primary" onClick={handleLogin}>Login</button>
                     </div>
+                </div>
+                <div className="card-actions justify-center mt-6">
+                    <Link className="btn btn-primary" to='/signup'>Sign Up</Link>
                 </div>
             </div>
         </div>
